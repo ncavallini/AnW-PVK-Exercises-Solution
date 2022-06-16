@@ -1,0 +1,251 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{nicefrac}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{bbding}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+
+\title{AnP PVK Exercises Solution}
+\author{Niccolò Cavallini}
+\date{June 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Graph Colouring}
+
+We have a sequence of vertices which we know uses $k$ colors. Let $c_i$ denote the color of vertex $i$, $1 \leq i \leq n = |V|$. We provide an ordering relation on the sequence, i.e., we sort the vertices such that their colours are in increasing order (first come vertex coloured with colour 1, then vertex coloured with colour 2 and so forth). Now, if we apply the greedy algorithm on this new sequence and denote $c'_j$ the new color of vertex $j$ in the new sequence, we get $c'_j \leq c_j$. This proves that we can construct a sequence which uses at most $\chi(G)$ colours. 
+
+\section{}
+\section{}
+\section{}
+\section{Probability I}
+We have three ways of representing such experiment: 
+\begin{enumerate}
+    \item Let $\Omega = \{(i,j) \ | \ 1 \leq i,j \leq 6\}$ where $i$ represents the value of the first dice and $j$ the value of the second dice. Note that these are \textit{ordered pairs}, i.e., $(i,j) \neq (j,i)$. This way, $|\Omega| = 6^2 = 36$. It is a Laplace space, so $P(\omega) = \nicefrac{1}{36} \ \forall \omega \in \Omega$. 
+    We can then easily count the pairs $(i, j)$ such that $i+j=8$. They are 5 such pairs, i.e., $S = \{(2,6), (6,2), (3,5), (5,3), (4,4)\}$. We have: $P(S) = \nicefrac{5}{36}$. 
+    \item Let $\Omega = \{\{i,j\} \ | \ 1 \leq i \neq j \leq 6\} \cup \{\{i\} \ | \ i=j\}$. The two variables have the same meaning as in 1., but here we are dealing with \textit{unordered pairs}, i.e., $\{i,j\} = \{j,i\}$. This way, we have: \[\Omega =  \{\{1\}, \{1,2\}, \{1,3\}, \ldots, \{2\}, \{2,3\}, \ldots, \{3\}, \{3,4\}, \{3,5\}, \{3,6\}, \{4\}, \{4,5\}, \{4,6\}, \{5\}, \{5,6\}, \{6\}\} \implies |\Omega| = 21\]
+    Then, for each 2-element set, we count twice and for each one-element size we count it once. This yields: $P(i+j = 8) = \frac{2 \cdot 2 + 1}{36} = \frac{5}{36}$
+    \item We consider $\Omega = \{i+j \ | \ 1 \leq i,j \leq 6\} = \{2, 3, \ldots, 12\}$. Tnen, we compute how many choices of $i,j$ get the sum $s$ for each $s = 2, \ldots, 12$. We note that there are 5 ways to add up to 8, so $P(i+j = 8) = \nicefrac{5}{36}$. 
+\end{enumerate}
+Personally, I find method 1. more intuitive, quicker and less error-prone.
+
+\section{Combinatorics}
+Here are four real-world examples: 
+\begin{itemize}
+    \item $n^k$: The number of possible $k$-characters long passwords using the English alphabet ($n=26$ letters). 
+    \item $\frac{(n+k-1)!}{k!(n-1)!}$: We have a bowl containing $n$ marbles and we want to know in how many ways we can pick $k$ of them supposing that we let the marble back in the bowl after each round and that we don't care about the order. 
+    \item $\frac{n!}{(n-k)!}$: We count in how many ways we can order $k$ elements out of $n$, e.g., the first $k=3$ players of a game in which $n$ people participate.
+    \item $\frac{n!}{k!(n-k)!} = \binom{n}{k}$ We flip a coin $n=10$ times and we are interested in the number of ways we can get $k=3$ times head, i.e., the anagrams of the word $HHHTTTTTTT$.
+\end{itemize}
+
+\section{Probability II} 
+We formalise the question using these two events: 
+\begin{itemize}
+    \item $A$: ``You know the right answer'' $\implies P(A) = p$.
+    \item $B$: ``You guess the right answer'' $\implies P(B) = \nicefrac{1}{4}$.
+\end{itemize}
+To answer a question correctly, either you know the answer, or you guess it (and you guess it, when you don't know the answer). 
+We can summarise these information using a diagram.
+
+\begin{figure}[H]
+    \centering
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da015691259074542607] 
+\draw    (45,92) -- (124.95,59.75) ;
+\draw [shift={(126.8,59)}, rotate = 158.03] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da5569849583369204] 
+\draw    (45,92) -- (107.24,141.75) ;
+\draw [shift={(108.8,143)}, rotate = 218.64] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da24673656461792248] 
+\draw    (138,144) -- (217.95,111.75) ;
+\draw [shift={(219.8,111)}, rotate = 158.03] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da6245741800318318] 
+\draw    (138,144) -- (200.24,193.75) ;
+\draw [shift={(201.8,195)}, rotate = 218.64] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw (133,49.4) node [anchor=north west][inner sep=0.75pt]    {\CheckmarkBold};
+% Text Node
+\draw (114,132.4) node [anchor=north west][inner sep=0.75pt]    {\XSolidBrush};
+% Text Node
+\draw (73,53.4) node [anchor=north west][inner sep=0.75pt]    {$p$};
+% Text Node
+\draw (47.35,109.48) node [anchor=north west][inner sep=0.75pt]  [rotate=-40.82]  {$1-p$};
+% Text Node
+\draw (227,99.4) node [anchor=north west][inner sep=0.75pt]    {\CheckmarkBold };
+% Text Node
+\draw (209,185.4) node [anchor=north west][inner sep=0.75pt]    {\XSolidBrush };
+% Text Node
+\draw (154.26,111.18) node [anchor=north west][inner sep=0.75pt]  [rotate=-336.61]  {$\nicefrac{1}{4}$};
+% Text Node
+\draw (145.42,160.25) node [anchor=north west][inner sep=0.75pt]  [rotate=-39.68]  {$\nicefrac{3}{4}$};
+\end{tikzpicture}
+\end{figure}
+From the diagram above, we can easily conclude: \[P(\text{right answer}) = p + \frac{1}{4}(1-p) = \frac{3}{4}p + \frac{1}{4}\]
+
+\section{Probability III -- \textit{Monty Hall Problem}}
+This is a classic of Conditional Probability: The Monty Hall Problem.
+On the first round, the player chooses a door out of 3. 
+Let event $A$ be ``The car is behind the chosen door''. We have: $P(A) = \nicefrac{1}{3}$.
+The presenter now opens one of the two other doors and shows the player that behind it there is a goat. 
+Then comes the question: ``Would you like to change the door''?
+
+At first, we are using a Laplace space.
+In the following schemes, we denote an unknown (to the player) door with ``?'', with $C$ the door with the car, with $G$ the (closed) door with goats behind them and with $(G)$ the opened door (with a goat). Under them, we write the probability of winning. A $\uparrow$ denotes the player's first choice.
+\[\begin{array}{ccc}
+     ? & ? & ?  \\
+     \nicefrac{1}{3} & \nicefrac{1}{3} & \nicefrac{1}{3} \\
+     & \uparrow & 
+\end{array}\]
+
+The player's chance of winning the game are in no way influenced by the presenter's decision to show a goat, because the presenter can \textit{always} open a door with a goat behind it. 
+Let's suppose w.l.o.g. that the car is behind door 1. 
+If the player chose door 2 (with probability $\nicefrac{1}{3}$), then the presenter will open either door 1 or 3. For the sake of this example, let's immagine the presenter opened door 3.
+\[\begin{array}{ccc}
+     C & G & (G)  \\
+     p & \nicefrac{1}{3} & 0 \\
+     & \uparrow & 
+\end{array}\]
+Since the sum of probabilities should equal one, we know $p = \nicefrac{2}{3}$.
+
+It may also be that the car is behind door 1 and you effectively chose door 1. If you change, you'll going to lose, but, statistically speaking, by changing you win twice out of three times.
+\[\begin{array}{ccc}
+     C & G & (G) \\
+    \nicefrac{1}{3}  & \nicefrac{2}{3} & 0\\
+     \uparrow & &
+\end{array}\]
+We conclude that either way you initially chose your door, it is always more convenient to change your mind.
+
+\section{Probability IV -- Independence}
+We need to prove the implication $P(A|B) = P(A|\bar B) \implies A, B$ are independent.
+
+We need to consider the fact that \[ P(A \cap B) + P(A \cap \bar B) = P(A)\]
+\begin{align*}
+     \dfrac{P(A\cap B)}{P(B)} &= \dfrac{P(A \cap \bar B)}{P(\bar B)}  \\
+     P(A \cap B)(1-P(B)) &= (P(A)-P(A\cap B))P(B) \\
+     P(A \cap B) - P(B)\cdot P(A\cap B) &= P(A)\cdot P(B) - P(A \cap B)\cdot P(B) \\
+     P(A \cap B) &= P(A) \cdot P(B) \qquad \blacksquare
+\end{align*}
+
+\section{Probability V}
+Let $X_{i,j} = \left\{
+\begin{array}{cl}
+   1  & \text{nodes } i, j \text{ have the same color} \\
+    0 & \text{otherwise}
+\end{array}
+\right.$.
+We know $\mathbb E(X_{i,j}) = \nicefrac{1}{2}$.
+
+Let $Y_{i,j} = \left\{
+\begin{array}{cl}
+   1  & \{i,j\} \subseteq E \\
+    0 & \{i,j\} \nsubseteq E
+\end{array}
+\right.$.
+We know $\mathbb E(Y_{i,j}) = \nicefrac{1}{2}$.
+
+Let now $Z_{i,j}$ be the number of edges between nodes of the same color.
+We have: \[\mathbb E(Z_{i,j}) = \sum_{i,j=1}^{2n} \mathbb E(X_{i,j}) \cdot \mathbb E(Y_{i,j}) = \left(\dfrac{1}{2} \cdot \dfrac{1}{2}\right)\cdot 4n^2 = n^2\]
+
+\section{Probability VI}
+
+\section{Probability VII -- Computation rules for $\mathbb E(X)$ and $\mathrm{Var}(X)$}
+We have the following distribution of a random variable $X$: 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc}
+         $x$ & -4 & -2 & 5 & 8 & 10 \\
+         \hline
+         $f_X(x)$ & 0.25 & 0.10 & 0.20 & 0.15 & 0.30
+    \end{tabular}
+\end{table}
+\begin{itemize}
+    \item By linearity of expected value, $\mathbb E(2X+8) = 2\mathbb E(X) + 8$. Moreover, $\mathbb E(X) = \displaystyle \sum_{x} x \cdot f_X(x)$. We get $\mathbb E(2X+8) = 2((-4) \cdot 0.25 + (-2)\cdot 0.10 + 5 \cdot 0.20 + 8 \cdot 0.15 + 10 \cdot 0.30) + 8 = 2 \cdot 4 + 8 = 16$.
+    \item We know $\mathrm{Var}(aX + b) = a^2 \cdot \mathrm{Var}(X)$ and $\mathrm{Var}(X) = \mathbb E(X^2) - \mathbb E(X)^2$. \\ So: $\mathrm{Var}(X) = \underbrace{(16 \cdot 0.25 + 4 \cdot 0.10 + 25 \cdot 0.20 + 64 \cdot 0.15 + 100 \cdot 0.30)}_{\mathbb E(X^2)} - \underbrace{16}_{\mathbb E(X)^2}= 49 - 16 = 33$.
+    
+    Now it is: $\mathrm{Var}(2X+8) = 2^2 \cdot \mathrm{Var}(X) = 4 \cdot 33 = 132$.
+\end{itemize}
+
+\section{Probability VIII -- Bernoulli Distribution}
+We know: $\mathrm{Var}(X) = E(X^2) - E(X)^2$. Let $X \sim \mathrm{Bernoulli}(p) \implies \mathbb E(X) = p$.
+It is easy to see that $\mathbb E(X^2) = 1^2 \cdot p + 0^2 \cdot (1-p) = p$. Now: $\mathrm{Var}(X) = p - p^2 = p(1-p) \quad \blacksquare$
+\section{Probability IX -- Binomial Distribution}
+It is easy to model the described situation as a random variable $X$ that holds the number of points the team is awarded for each match $1 \leq i \leq n = 15$. This leads us to such a definition: \[X_i := \left\{
+\begin{array}{cl}
+    3  & p = 0.6  \\
+    -1 & q = 1-p = 0.4 
+\end{array}
+\right.\]
+We notice that $X_i \sim \mathrm{Bernoulli}(0.6)$ which implies $X = \displaystyle \sum_{i=1}^n X_i \sim \mathrm{Bin}(0.6)$.
+
+We get: $\mathbb E(X) = np = 15 \cdot 0.6 = 9$ and $\mathrm{Var}(X) = np(1-p) = 3.6$.
+
+\section{Probability X -- Geometric Distribution}
+For the sake of convenience, let $q := 1-p$.
+\begin{align*}
+    \mathbb E(X) &= \sum_{i=1}^n i \cdot p(1-p)^{i-1} \\
+    &= p \sum_{i=1}^n i \cdot q^{i-1} \\
+    &= p \sum_{i=1}^n \dfrac{\mathrm d}{\mathrm dq} q^i \\
+    &= p \dfrac{\mathrm d}{\mathrm dq} \left(\sum_{i=1}^n q^i\right) \\
+    &= p \left(\dfrac{1}{1-q}\right)' \\
+    &= p \cdot \dfrac{1}{(1-q)^2} \\
+    &=  \dfrac{p}{p^2} \\
+    &= \dfrac{1}{p}
+\end{align*}
+
+\section{Probability XI -- Negative Binomial Distribution}
+\section{Probability XII -- Poisson Distribution} 
+\begin{align*}
+    \mathbb E(X) &= \sum_{i=1}^n i \cdot \dfrac{e^{-\lambda} \lambda i}{i!} \\
+    &= e^{-\lambda} \sum_{i=1}^n \dfrac{\lambda ^i}{i!} \cdot i \\
+    &= e^{-\lambda} \sum_{i=0}^{n-1} \dfrac{\lambda^i}{(i-1)!} \\
+    &= e^{-\lambda} \cdot \lambda \cdot e^{\lambda} \\
+    &= \lambda
+\end{align*}
+\section{Probability XIII -- Coupon Collector}
+In this exercise we deal with a variant of the standard Coupon Collector Problem by assuming that we already have $\nicefrac{n}{2}$ items at the beginning. As always, let $X:=$ ``\# of rounds to complete the collection''.
+As we already have $\nicefrac{n}{2}$ coupons, we need $\nicefrac{n}{2}$ more. Let $k := \nicefrac{n}{2}$. Now we can solve the problem using $k$ (imagining a new collection of coupons with only $k$ coupons in total). Then, $\mathbb E(X) = k \cdot \mathcal H_k = \frac{n}{2} \cdot \mathcal H_{\nicefrac{n}{2}}$
+
+\section{Probability XIV -- Markov's Inequality}
+Markov's Inequality: \[P(X \geq t) \leq \dfrac{\mathbb E(X)}{t} \quad (X \geq 0, t > 0)\]
+As an example, consider the following distribution for the random variable $X$: 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cccc}
+         $x$ & 1 & 2 & 3 & 4 \\
+         \hline
+         $f_X(x)$ & 0.2 & 0.4 & 0.3 & 0.1
+    \end{tabular}
+\end{table}
+We see that $X$ meets the requirements, as $X \geq 0 \ \forall x$.
+Let's compute the actual value for $P(X \geq 3)$. $P(X \geq 3) = 0.3 + 0.1 = 0.4$. Now, let's compute $\mathbb E(X) = 2.3$.
+Markov's Inequality yields: $P(X \geq 3) \leq \frac{2.3}{3} = 0.7\bar 6$. This result is correct, as $0.4 \leq 0.7\bar 6$.
+
+Now let's change the numbers a bit, to make the random variable negative for some $x$. 
+We define $Y$ as follows: 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cccc}
+         $x$ & 1 & $-2$ & $-3$ & 4 \\
+         \hline
+         $f_Y(x)$ & 0.2 & 0.4 & 0.3 & 0.1
+    \end{tabular}
+\end{table}
+Now we have $\mathbb E(Y) = -1.1$. If we compute the actual value of $P(Y \geq 3) = P(Y = 4) = 0.1$. But if we apply Markov's Inequality we erroneously get $P(Y \geq 3) \leq \frac{-1.1}{3} = -0.3\bar 6$, which is obviously incorrect, as $0.1 \not\leq -0.3\bar6$.
+
+With this example we've shown that the requirement $X \geq 0$ is foundational to the correctness of Markov's Inequality. 
+\end{document}
